@@ -1,3 +1,3 @@
 exports.showLandingPage = (req,res) => {
-    res.send('helloworld1')
+    res.render('index',{greeting:'hello'})
 }
