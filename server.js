@@ -3,9 +3,15 @@ const app = express();
 const PORT = 3000;
 const path = require('path')
 const mongoose = require('mongoose');
+const methodOverride = require('method-override')
 
+// bodyparser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// methodOverRide
+app.use(methodOverride('_method'))
+
 
 // database connection
 mongoose.connect('mongodb+srv://Aanand:aanand@cluster0-lv7sa.mongodb.net/test?retryWrites=true&w=majority', {

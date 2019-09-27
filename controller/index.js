@@ -14,5 +14,23 @@ exports.postIdea = (req,res) => {
     res.send('title or description is empty');
 }
 exports.getIdeas = (req,res) => {
+    Idea.find({}).then(ideas=>{
+        res.render('ideas',{ideas})
+    })
+}
 
+exports.getEditForm = (req,res) => {
+    Idea.findById(req.params.id).then(idea=> {
+        res.render('edit',{idea})
+    })
+}
+
+exports.editIdea = (req,res) => {
+    Idea.findById(req.params.id).then(idea=>{
+        if (req.body.title !== "" && req.body.description !== "") {
+        idea.title = req.body.title;
+        idea.description = req.body.description;
+        idea.save();
+        res.redirect('/ideas')
+    }})
 }
