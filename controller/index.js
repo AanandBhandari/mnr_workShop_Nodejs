@@ -34,3 +34,10 @@ exports.editIdea = (req,res) => {
         res.redirect('/ideas')
     }})
 }
+
+exports.deleteIdea = (req,res) => {
+    Idea.findByIdAndRemove(req.params.id).then(()=>res.redirect('/ideas'))
+}
+exports.about = (req,res) => {
+    res.render('about')
+}
